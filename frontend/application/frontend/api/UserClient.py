@@ -21,9 +21,9 @@ class UserClient:
                 api_key = d['api_key']
         return api_key
     
-    # logging.getLogger().info("This is from UserClient.py")
-    # logging.getLogger().info("This is request from user api: " + str(request))
-    # logging.getLogger().info(request)
+    logging.getLogger().info("This is from UserClient.py")
+    logging.getLogger().info("This is request from user api: " + str(request))
+    logging.getLogger().info(request)
     
 
     @staticmethod
@@ -47,8 +47,8 @@ class UserClient:
             'last_name': form.last_name.data,
             'username': form.username.data
         }
-        # logging.getLogger().info("This is from UserClient.py")
-        # logging.getLogger().info(payload)
+        logging.getLogger().info("This is from UserClient.py")
+        logging.getLogger().info(payload)
         url = 'http://cuser-service:5001/api/user/create'
         response = requests.request("POST", url=url, data=payload)
         if response:
