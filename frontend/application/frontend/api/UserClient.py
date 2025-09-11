@@ -1,6 +1,7 @@
 # application/frontend/api/UserClient.py
 import requests
 from flask import session, request
+import logging
 
 
 class UserClient:
@@ -19,6 +20,11 @@ class UserClient:
             if d['api_key'] is not None:
                 api_key = d['api_key']
         return api_key
+    
+    # logging.getLogger().info("This is from UserClient.py")
+    # logging.getLogger().info("This is request from user api: " + str(request))
+    # logging.getLogger().info(request)
+    
 
     @staticmethod
     def get_user():
@@ -41,11 +47,14 @@ class UserClient:
             'last_name': form.last_name.data,
             'username': form.username.data
         }
+        # logging.getLogger().info("This is from UserClient.py")
+        # logging.getLogger().info(payload)
         url = 'http://cuser-service:5001/api/user/create'
         response = requests.request("POST", url=url, data=payload)
         if response:
             user = response.json()
         return user
+    
 
     @staticmethod
     def does_exist(username):
