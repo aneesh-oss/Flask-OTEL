@@ -1,8 +1,22 @@
 # application/frontend/api/UserClient.py
 import requests
 from flask import session, request
-import logging
 
+# import logging
+# from run import logger
+# import logging
+# import sys
+
+# logging.basicConfig(
+#     level=logging.INFO,
+#     format="%(asctime)s [service=%(service.name)s] [trace_id=%(trace_id)s span_id=%(span_id)s] %(message)s",
+#     stream=sys.stdout  # important for Docker log capture
+# )
+
+# logger = logging.getLogger(__name__)
+# logger.info("This is a test log with OTEL trace/span")
+
+print("This is UserClient.py")
 
 class UserClient:
     @staticmethod
@@ -14,11 +28,15 @@ class UserClient:
         }
         url = 'http://cuser-service:5001/api/user/login'
         response = requests.request("POST", url=url, data=payload)
+        # logger.info("This is from UserClient.py")
+        # logger.info("This is request from user api: " + str(request))
         if response:
             d = response.json()
             print("This is response from user api: " + str(d))
             if d['api_key'] is not None:
                 api_key = d['api_key']
+            print("This is api_key from user api: " + str(api_key))
+            # logger.info("This is api_key from user api: " + str(api_key))
         return api_key
     
     logging.getLogger().info("This is from UserClient.py")
@@ -53,6 +71,8 @@ class UserClient:
         response = requests.request("POST", url=url, data=payload)
         if response:
             user = response.json()
+            print("This is response from user api: " + str(user))
+            # logger.info("This is response from user api: " + str(user))
         return user
     
 
