@@ -7,7 +7,9 @@ RUN pip install \
     opentelemetry-distro \
     opentelemetry-exporter-otlp \
     opentelemetry-instrumentation \
-    opentelemetry-instrumentation-flask
+    opentelemetry-instrumentation-flask \
+    opentelemetry-instrumentation-requests \
+    opentelemetry-instrumentation-logging
 COPY . /frontendapp
 ENTRYPOINT ["opentelemetry-instrument"]
 CMD ["python","run.py"]

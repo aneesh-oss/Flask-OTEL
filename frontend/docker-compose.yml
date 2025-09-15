@@ -17,12 +17,14 @@ services:
       - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://opentelemetry-collector:4317/v1/traces
       - OTEL_SERVICE_NAME=user-api
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://opentelemetry-collector:4317
-      - OTEL_PYTHON_LOG_CORRELATION=true
-      - OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
+      # - OTEL_PYTHON_LOG_CORRELATION=true
+      # - OTEL_PYTHON_LOG_FORMAT="%(asctime)s [service=%(service.name)s] [trace_id=%(trace_id)s span_id=%(span_id)s] %(message)s"
+      # - OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
       - OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
       - OTEL_PYTHON_LOG_LEVEL=debug
       - OTEL_TRACES_EXPORTER=otlp
       - OTEL_METRICS_EXPORTER=otlp
+      - OTEL_LOGS_EXPORTER= otlp
     ports:
     - "5001:5001"
     depends_on:
@@ -53,13 +55,15 @@ services:
     environment:
       - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://opentelemetry-collector:4317/v1/traces
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://opentelemetry-collector:4317
-      - OTEL_PYTHON_LOG_CORRELATION=true
-      - OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
+      # - OTEL_PYTHON_LOG_CORRELATION=true
+      # - OTEL_PYTHON_LOG_FORMAT="%(asctime)s [service=%(service.name)s] [trace_id=%(trace_id)s span_id=%(span_id)s] %(message)s"
+      # - OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
       - OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
       - OTEL_PYTHON_LOG_LEVEL=debug
       - OTEL_SERVICE_NAME=product-api
       - OTEL_TRACES_EXPORTER=otlp
       - OTEL_METRICS_EXPORTER=otlp
+      - OTEL_LOGS_EXPORTER= otlp
     ports:
     - "5002:5002"
     depends_on:
@@ -90,13 +94,15 @@ services:
     environment:
       - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://opentelemetry-collector:4317/v1/traces
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://opentelemetry-collector:4317
-      - OTEL_PYTHON_LOG_CORRELATION=true
-      - OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
+      # - OTEL_PYTHON_LOG_CORRELATION=true
+      # - OTEL_PYTHON_LOG_FORMAT="%(asctime)s [service=%(service.name)s] [trace_id=%(trace_id)s span_id=%(span_id)s] %(message)s"
+      # # - OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
       - OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
       - OTEL_PYTHON_LOG_LEVEL=debug
       - OTEL_SERVICE_NAME=order-api
       - OTEL_TRACES_EXPORTER=otlp
       - OTEL_METRICS_EXPORTER=otlp
+      - OTEL_LOGS_EXPORTER= otlp
     ports:
     - "5003:5003"
     depends_on:
@@ -151,12 +157,14 @@ services:
       - OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://opentelemetry-collector:4317/v1/traces
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://opentelemetry-collector:4317
       - OTEL_SERVICE_NAME=frontend
-      - OTEL_PYTHON_LOG_CORRELATION=true
-      - OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
+      # - OTEL_PYTHON_LOG_CORRELATION=true
+      # - OTEL_PYTHON_LOG_FORMAT="%(asctime)s [service=%(service.name)s] [trace_id=%(trace_id)s span_id=%(span_id)s] %(message)s"
+      # - OTEL_PYTHON_LOG_FORMAT="%(msg)s [span_id=%(span_id)s]"
       - OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED=true
       - OTEL_PYTHON_LOG_LEVEL=debug
       - OTEL_TRACES_EXPORTER=otlp
       - OTEL_METRICS_EXPORTER=otlp
+      - OTEL_LOGS_EXPORTER= otlp
     ports:
     - "5000:5000"
     networks:
@@ -179,3 +187,16 @@ services:
       - IPC_LOCK
     networks:
       - micro_network
+    
+  # fluent-bit:
+  #   image: fluent/fluent-bit:2.1
+  #   container_name: fluent-bit
+  #   restart: always
+  #   environment:
+  #     - NEW_RELIC_LICENSE_KEY=5b3c738c91170cdd1febd7d1865a243bFFFFNRAL
+  #   volumes:
+  #     - /var/lib/docker/containers:/var/lib/docker/containers:ro
+  #     - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+  #     - ./parsers.conf:/fluent-bit/etc/parsers.conf
+  #   networks:
+  #     - micro_network
