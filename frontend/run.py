@@ -3,6 +3,11 @@
 # from opentelemetry import trace
 from application import create_app
 
+app = create_app()
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+
 # 🔹 OTEL log filter to enrich logs with trace/span context
 # class OTELLogFilter(logging.Filter):
 #     def filter(self, record):
@@ -33,11 +38,11 @@ from application import create_app
 
 # # 🔹 Create app + logger
 # logger = setup_logger()
-app = create_app()
+# app = create_app()
 
-if __name__ == "__main__":
-    # logger.info("🚀 Starting frontend Flask service...")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+# if __name__ == "__main__":
+#     # logger.info("🚀 Starting frontend Flask service...")
+#     app.run(host="0.0.0.0", port=5000, debug=True)
 
 
 # run.py

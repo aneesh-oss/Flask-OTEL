@@ -16,7 +16,7 @@ from flask import session, request
 # logger = logging.getLogger(__name__)
 # logger.info("This is a test log with OTEL trace/span")
 
-print("This is UserClient.py")
+# print("This is UserClient.py")
 
 class UserClient:
     @staticmethod
@@ -35,13 +35,13 @@ class UserClient:
             print("This is response from user api: " + str(d))
             if d['api_key'] is not None:
                 api_key = d['api_key']
-            print("This is api_key from user api: " + str(api_key))
+            # print("This is api_key from user api: " + str(api_key))
             # logger.info("This is api_key from user api: " + str(api_key))
         return api_key
     
-    logging.getLogger().info("This is from UserClient.py")
-    logging.getLogger().info("This is request from user api: " + str(request))
-    logging.getLogger().info(request)
+    # logging.getLogger().info("This is from UserClient.py")
+    # logging.getLogger().info("This is request from user api: " + str(request))
+    # logging.getLogger().info(request)
     
 
     @staticmethod
@@ -65,8 +65,8 @@ class UserClient:
             'last_name': form.last_name.data,
             'username': form.username.data
         }
-        logging.getLogger().info("This is from UserClient.py")
-        logging.getLogger().info(payload)
+        # logging.getLogger().info("This is from UserClient.py")
+        # logging.getLogger().info(payload)
         url = 'http://cuser-service:5001/api/user/create'
         response = requests.request("POST", url=url, data=payload)
         if response:
