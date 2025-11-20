@@ -24,7 +24,7 @@ services:
       - OTEL_PYTHON_LOG_LEVEL=debug
       - OTEL_TRACES_EXPORTER=otlp
       - OTEL_METRICS_EXPORTER=otlp
-      - OTEL_LOGS_EXPORTER= otlp
+      - OTEL_LOGS_EXPORTER=otlp
     ports:
     - "5001:5001"
     depends_on:
@@ -63,7 +63,7 @@ services:
       - OTEL_SERVICE_NAME=product-api
       - OTEL_TRACES_EXPORTER=otlp
       - OTEL_METRICS_EXPORTER=otlp
-      - OTEL_LOGS_EXPORTER= otlp
+      - OTEL_LOGS_EXPORTER=otlp
     ports:
     - "5002:5002"
     depends_on:
@@ -102,7 +102,7 @@ services:
       - OTEL_SERVICE_NAME=order-api
       - OTEL_TRACES_EXPORTER=otlp
       - OTEL_METRICS_EXPORTER=otlp
-      - OTEL_LOGS_EXPORTER= otlp
+      - OTEL_LOGS_EXPORTER=otlp
     ports:
     - "5003:5003"
     depends_on:
@@ -164,7 +164,7 @@ services:
       - OTEL_PYTHON_LOG_LEVEL=debug
       - OTEL_TRACES_EXPORTER=otlp
       - OTEL_METRICS_EXPORTER=otlp
-      - OTEL_LOGS_EXPORTER= otlp
+      - OTEL_LOGS_EXPORTER=otlp
     ports:
     - "5000:5000"
     networks:

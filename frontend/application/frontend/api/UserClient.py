@@ -16,7 +16,7 @@ from flask import session, request
 # logger = logging.getLogger(__name__)
 # logger.info("This is a test log with OTEL trace/span")
 
-print("This is UserClient.py")
+# print("This is UserClient.py")
 
 class UserClient:
     @staticmethod
@@ -35,7 +35,7 @@ class UserClient:
             print("This is response from user api: " + str(d))
             if d['api_key'] is not None:
                 api_key = d['api_key']
-            print("This is api_key from user api: " + str(api_key))
+            # print("This is api_key from user api: " + str(api_key))
             # logger.info("This is api_key from user api: " + str(api_key))
         return api_key
     

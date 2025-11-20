@@ -2,6 +2,7 @@
 from . import user_api_blueprint
 from .. import db, login_manager
 from ..models import User
+# import logging
 from flask import make_response, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -54,6 +55,7 @@ def post_register():
     db.session.commit()
 
     response = jsonify({'message': 'User added', 'result': user.to_json()})
+    print("This is response from user api: " + str(response))
 
     return response
 
@@ -69,6 +71,7 @@ def post_login():
             login_user(user)
 
             return make_response(jsonify({'message': 'Logged in', 'api_key': user.api_key}))
+    print("Login failed for user: " + str(username))
 
     return make_response(jsonify({'message': 'Not logged in'}), 401)
 
@@ -77,6 +80,7 @@ def post_login():
 def post_logout():
     if current_user.is_authenticated:
         logout_user()
+        print("User logged out")
         return make_response(jsonify({'message': 'You are logged out'}))
     return make_response(jsonify({'message': 'You are not logged in'}))
 
